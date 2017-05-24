@@ -6,13 +6,19 @@ package de.bankprogramming.models;
 
 import java.util.Date;
 
+import de.bankprogramming.models.enums.AccountType;
+
 public class Account {
 
-	long customerID;
+	long accountID;
 	Date startDate;
 	Date endDate;
+	AccountType type;
 
-	public Account() {
-		// TODO Auto-generated constructor stub
+	long customerID;
+
+	public Account(AccountType type) {
+		this.type = type;
+		startDate = new Date(System.currentTimeMillis());
 	}
 }
