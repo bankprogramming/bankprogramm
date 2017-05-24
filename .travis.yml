@@ -1,0 +1,14 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+before_install:
+ - chmod +x gradlew
+ - gradle wrapper
+
+sudo: required
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
