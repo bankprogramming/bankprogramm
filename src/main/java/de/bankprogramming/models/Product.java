@@ -6,14 +6,25 @@ package de.bankprogramming.models;
 
 import java.util.Date;
 
+import de.bankprogramming.models.enums.ProductType;
+
 public class Product {
 
 	// fields
-	long productID;
-	Date startDate;
-	Date beginDate;
 
-	public Product() {
+	public long productID;
+	public Date startDate;
+	public Date beginDate;
+	public ProductType type;
 
+	public long customerID;
+
+	/**
+	 *
+	 * @param type
+	 */
+	public Product(ProductType type) {
+		this.type = type;
+		startDate = new Date(System.currentTimeMillis());
 	}
 }

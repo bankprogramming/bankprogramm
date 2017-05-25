@@ -6,19 +6,16 @@ package de.bankprogramming.models;
 
 import java.util.Date;
 
-import de.bankprogramming.models.enums.AccountType;
+import de.bankprogramming.models.enums.ProductType;
 
-public class Account {
+public class Account extends Product {
 
-	long accountID;
-	Date startDate;
-	Date endDate;
-	AccountType type;
-
-	long customerID;
-
-	public Account(AccountType type) {
-		this.type = type;
+	/**
+	 *
+	 * @param type
+	 */
+	public Account(ProductType type) {
+		super(type);
 		startDate = new Date(System.currentTimeMillis());
 	}
 }
