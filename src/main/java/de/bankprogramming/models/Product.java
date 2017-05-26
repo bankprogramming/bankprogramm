@@ -14,7 +14,7 @@ public class Product {
 
 	public long productID;
 	public Date startDate;
-	public Date beginDate;
+	public Date endDate;
 	public ProductType type;
 
 	public long customerID;
@@ -23,8 +23,10 @@ public class Product {
 	 *
 	 * @param type
 	 */
-	public Product(ProductType type) {
+	public Product(ProductType type, long customerID) {
 		this.type = type;
 		startDate = new Date(System.currentTimeMillis());
+		// productID = ModelHelper.getProductID();
+		this.customerID = customerID;
 	}
 }

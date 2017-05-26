@@ -14,8 +14,8 @@ public class Account extends Product {
 	 *
 	 * @param type
 	 */
-	public Account(ProductType type) {
-		super(type);
+	public Account(ProductType type, long customerID) {
+		super(type, customerID);
 		startDate = new Date(System.currentTimeMillis());
 	}
 }
