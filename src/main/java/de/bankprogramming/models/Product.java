@@ -4,7 +4,7 @@
 */
 package de.bankprogramming.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import de.bankprogramming.models.enums.ProductType;
 
@@ -13,8 +13,8 @@ public class Product {
 	// fields
 
 	public long productID;
-	public Date startDate;
-	public Date endDate;
+	public LocalDate startDate;
+	public LocalDate endDate;
 	public ProductType type;
 
 	public long customerID;
@@ -25,7 +25,7 @@ public class Product {
 	 */
 	public Product(ProductType type, long customerID) {
 		this.type = type;
-		startDate = new Date(System.currentTimeMillis());
+		startDate = LocalDate.now();
 		// productID = ModelHelper.getProductID();
 		this.customerID = customerID;
 	}

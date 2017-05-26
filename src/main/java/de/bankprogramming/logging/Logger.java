@@ -1,3 +1,7 @@
+/**
+* @ Author: Rick
+* @ Creation Date: 24.05.2017
+*/
 package de.bankprogramming.logging;
 
 import java.io.File;
