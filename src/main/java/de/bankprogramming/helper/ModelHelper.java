@@ -14,12 +14,14 @@ import com.google.gson.Gson;
 
 public class ModelHelper {
 
+	private static ModelHelper instance;
+
 	private HashMap<String, Integer> metaData;
 	private Gson gson = new Gson();
 	final File file;
 
 	public ModelHelper() {
-		file = getFileReference(gson);
+		file = getFileReference();
 
 		try (FileReader reader = new FileReader(file)) {
 			if (reader.ready()) {
@@ -28,6 +30,13 @@ public class ModelHelper {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static ModelHelper getInstance() {
+		if (ModelHelper.instance == null) {
+			ModelHelper.instance = new ModelHelper();
+		}
+		return ModelHelper.instance;
 	}
 
 	/**
@@ -51,11 +60,26 @@ public class ModelHelper {
 		return currentID;
 	}
 
+	public long getCustomerID() {
+		int custID = metaData.get("customerID");
+
+		int currentID = custID + 1;
+		metaData.put("customerID", custID);
+
+		// save to file
+		try (FileWriter writer = new FileWriter(file)) {
+			gson.toJson(custID, writer);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return currentID;
+	}
+
 	/**
 	 *
 	 * @returns the file with the metadata
 	 */
-	private File getFileReference(Gson gson) {
+	private File getFileReference() {
 		File file = new File("MetaData.json");
 
 		if (!file.exists()) {
