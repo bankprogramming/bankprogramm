@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
@@ -46,6 +47,10 @@ public class ProductHelper {
 			ProductHelper.instance = new ProductHelper();
 		}
 		return ProductHelper.instance;
+	}
+
+	public ArrayList<Product> getAllProducts() {
+		return (ArrayList<Product>) products.values();
 	}
 
 	/**
