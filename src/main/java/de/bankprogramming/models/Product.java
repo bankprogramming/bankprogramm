@@ -30,43 +30,78 @@ public class Product {
 		this.owner = owner;
 	}
 
+	/**
+	 * @return the productID
+	 */
 	public long getProductID() {
 		return productID;
 	}
 
+	/**
+	 * @param productID
+	 *            the productID to set
+	 */
 	public void setProductID(long productID) {
 		this.productID = productID;
 	}
 
+	/**
+	 * @return the startDate
+	 */
 	public LocalDate getStartDate() {
 		return startDate;
 	}
 
+	/**
+	 * @param startDate
+	 *            the startDate to set
+	 */
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
+	/**
+	 * @return the endDate
+	 */
 	public LocalDate getEndDate() {
 		return endDate;
 	}
 
+	/**
+	 * @param endDate
+	 *            the endDate to set
+	 */
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
+	/**
+	 * @return the type
+	 */
 	public ProductType getType() {
 		return type;
 	}
 
+	/**
+	 * @param type
+	 *            the type to set
+	 */
 	public void setType(ProductType type) {
 		this.type = type;
 	}
 
-	public Customer getCustomerID() {
+	/**
+	 * @return the owner
+	 */
+	public Customer getOwner() {
 		return owner;
 	}
 
-	public void setCustomerID(Customer owner) {
+	/**
+	 * @param owner
+	 *            the owner to set
+	 */
+	public void setOwner(Customer owner) {
 		this.owner = owner;
 	}
 
