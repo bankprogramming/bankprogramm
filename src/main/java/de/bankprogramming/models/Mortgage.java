@@ -22,7 +22,6 @@ public class Mortgage extends Loan {
 		this.insurance = insurance;
 		fee = 35;
 		repaymentPenalty = monthlyAmount() * 2;
-
 	}
 
 	public double monthlyAmount() {

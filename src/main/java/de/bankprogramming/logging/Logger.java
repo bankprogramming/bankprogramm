@@ -5,19 +5,27 @@
 package de.bankprogramming.logging;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
 
 public class Logger {
 
 	private static File logFile;
-	private static FileWriter writer;
+
+	private static ArrayList<String> log;
+
+	private Gson gson;
 
 	/**
 	 * Loads or creates the text file for the logging.
 	 */
 	public Logger() {
-		logFile = new File("Log.txt");
+		gson = new Gson();
+		logFile = new File("log.json");
 		boolean fileloaded = false;
 		if (!logFile.exists()) {
 			try {
@@ -30,10 +38,10 @@ public class Logger {
 		}
 
 		if (!fileloaded) {
-			// throw logging exception
+			// TODO throw logging exception
 		} else {
-			try {
-				writer = new FileWriter(logFile, true);
+			try (FileReader reader = new FileReader(logFile)) {
+				log = gson.fromJson(reader, (Type) log);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -41,20 +49,18 @@ public class Logger {
 	}
 
 	/**
+	 * @return the log
+	 */
+	public ArrayList<String> getLog() {
+		return log;
+	}
+
+	/**
 	 *
 	 * @param message
 	 */
 	public static void logToFile(String message) {
-		if (logFile.exists() && logFile.canWrite()) {
-			try {
-				// should append the message to the files content
-				// TODO test this!
-				writer.write(message + "\n");
-				writer.flush();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		log.add(message);
 	}
 
 	/**
