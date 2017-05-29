@@ -8,17 +8,17 @@ import java.time.LocalDate;
 
 public class Transaction {
 
-	public double amount;
+	private double amount;
 
 	// vom Ziel Account die CustomerID
-	public long targetID;
-	public long targetAccount;
+	private long targetID;
+	private long targetAccount;
 	// vom source Account die CustomerID
-	public long sourceID;
-	public long sourceAccount;
+	private long sourceID;
+	private long sourceAccount;
 
-	public LocalDate timestamp;
-	public LocalDate triggerDate;
+	private LocalDate timestamp;
+	private LocalDate triggerDate;
 
 	public Transaction(double amount, long targetID, long targetAccount, long sourceID, long sourceAccount,
 			LocalDate triggerDate) {
@@ -30,4 +30,61 @@ public class Transaction {
 		this.sourceID = sourceID;
 		this.sourceAccount = sourceAccount;
 	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public long getTargetID() {
+		return targetID;
+	}
+
+	public void setTargetID(long targetID) {
+		this.targetID = targetID;
+	}
+
+	public long getTargetAccount() {
+		return targetAccount;
+	}
+
+	public void setTargetAccount(long targetAccount) {
+		this.targetAccount = targetAccount;
+	}
+
+	public long getSourceID() {
+		return sourceID;
+	}
+
+	public void setSourceID(long sourceID) {
+		this.sourceID = sourceID;
+	}
+
+	public long getSourceAccount() {
+		return sourceAccount;
+	}
+
+	public void setSourceAccount(long sourceAccount) {
+		this.sourceAccount = sourceAccount;
+	}
+
+	public LocalDate getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(LocalDate timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public LocalDate getTriggerDate() {
+		return triggerDate;
+	}
+
+	public void setTriggerDate(LocalDate triggerDate) {
+		this.triggerDate = triggerDate;
+	}
+
 }

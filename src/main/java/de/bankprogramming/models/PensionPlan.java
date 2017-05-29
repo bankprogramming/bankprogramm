@@ -11,11 +11,20 @@ import de.bankprogramming.models.enums.Strategy;
 
 public class PensionPlan extends Investment {
 
-	public double monthlyInput;
+	private double monthlyInput;
 
 	public PensionPlan(ProductType type, long customerID, List<String> portfolio, Strategy strategy,
 			double monthlyInput) {
 		super(type, customerID, portfolio, strategy);
 		this.monthlyInput = monthlyInput;
 	}
+
+	public double getMonthlyInput() {
+		return monthlyInput;
+	}
+
+	public void setMonthlyInput(double monthlyInput) {
+		this.monthlyInput = monthlyInput;
+	}
+
 }

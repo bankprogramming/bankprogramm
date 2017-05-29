@@ -12,12 +12,12 @@ public class Product {
 
 	// fields
 
-	public long productID;
-	public LocalDate startDate;
-	public LocalDate endDate;
-	public ProductType type;
+	private long productID;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private ProductType type;
 
-	public long customerID;
+	private long customerID;
 
 	/**
 	 *
@@ -29,4 +29,45 @@ public class Product {
 		// productID = ModelHelper.getProductID();
 		this.customerID = customerID;
 	}
+
+	public long getProductID() {
+		return productID;
+	}
+
+	public void setProductID(long productID) {
+		this.productID = productID;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+
+	public ProductType getType() {
+		return type;
+	}
+
+	public void setType(ProductType type) {
+		this.type = type;
+	}
+
+	public long getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(long customerID) {
+		this.customerID = customerID;
+	}
+
 }

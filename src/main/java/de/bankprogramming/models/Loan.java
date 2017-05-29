@@ -10,13 +10,37 @@ import de.bankprogramming.models.enums.ProductType;
 
 public class Loan extends Product {
 
-	public double amount;
-	public double interestRate;
-	public Period duration;
+	private double amount;
+	private double interestRate;
+	private Period duration;
 
 	public Loan(ProductType type, long customerID, double amount, double interestRate, Period duration) {
 		super(type, customerID);
 		this.amount = amount;
 		this.interestRate = interestRate;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public double getInterestRate() {
+		return interestRate;
+	}
+
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
+	}
+
+	public Period getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Period duration) {
+		this.duration = duration;
 	}
 }

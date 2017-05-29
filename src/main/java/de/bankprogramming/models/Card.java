@@ -8,13 +8,13 @@ import de.bankprogramming.models.enums.ProductType;
 
 public class Card extends Product {
 
-	public double yearlyFee;
-	public String cardStyle;
+	private double yearlyFee;
+	private String cardStyle;
 
 	// TODO Verknüpfung mit accountlimit
-	public int limit;
-	public boolean international;
-	public boolean locked;
+	private int limit;
+	private boolean international;
+	private boolean locked;
 
 	public Card(ProductType type, long customerID, double yearlyFee, String cardStyle, int limit, boolean international,
 			boolean locked) {
@@ -23,6 +23,46 @@ public class Card extends Product {
 		this.cardStyle = cardStyle;
 		this.limit = limit;
 		this.international = international;
+		this.locked = locked;
+	}
+
+	public double getYearlyFee() {
+		return yearlyFee;
+	}
+
+	public void setYearlyFee(double yearlyFee) {
+		this.yearlyFee = yearlyFee;
+	}
+
+	public String getCardStyle() {
+		return cardStyle;
+	}
+
+	public void setCardStyle(String cardStyle) {
+		this.cardStyle = cardStyle;
+	}
+
+	public int getLimit() {
+		return limit;
+	}
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+	public boolean isInternational() {
+		return international;
+	}
+
+	public void setInternational(boolean international) {
+		this.international = international;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
 		this.locked = locked;
 	}
 }

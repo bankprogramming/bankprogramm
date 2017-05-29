@@ -10,10 +10,10 @@ import de.bankprogramming.models.enums.ProductType;
 
 public class Mortgage extends Loan {
 
-	public double loanToValueLimit;
-	public double fee;
-	public double repaymentPenalty;
-	public String insurance;
+	private double loanToValueLimit;
+	private double fee;
+	private double repaymentPenalty;
+	private String insurance;
 
 	public Mortgage(ProductType type, long customerID, double amount, double interestRate, double loanToValueLimit,
 			String insurance, Period duration) {
@@ -26,6 +26,39 @@ public class Mortgage extends Loan {
 	}
 
 	public double monthlyAmount() {
-		return (amount * (100 + interestRate)) / duration.getMonths();
+		return (this.getAmount() * (100 + this.getInterestRate())) / this.getDuration().getMonths();
 	}
+
+	public double getLoanToValueLimit() {
+		return loanToValueLimit;
+	}
+
+	public void setLoanToValueLimit(double loanToValueLimit) {
+		this.loanToValueLimit = loanToValueLimit;
+	}
+
+	public double getFee() {
+		return fee;
+	}
+
+	public void setFee(double fee) {
+		this.fee = fee;
+	}
+
+	public double getRepaymentPenalty() {
+		return repaymentPenalty;
+	}
+
+	public void setRepaymentPenalty(double repaymentPenalty) {
+		this.repaymentPenalty = repaymentPenalty;
+	}
+
+	public String getInsurance() {
+		return insurance;
+	}
+
+	public void setInsurance(String insurance) {
+		this.insurance = insurance;
+	}
+
 }
