@@ -1,5 +1,7 @@
 package de.bankprogramming;
 
+import de.bankprogramming.util.Bankprogramm;
+import de.bankprogramming.view.MainFrame;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -8,12 +10,15 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-	public void main(String[] args) {
+	public static void main(String[] args) {
+		Bankprogramm.init();
 		launch(args);
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
+		MainFrame mainFrame = new MainFrame(primaryStage);
+		mainFrame.show();
 	}
 }

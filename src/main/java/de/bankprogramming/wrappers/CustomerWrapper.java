@@ -30,6 +30,7 @@ public class CustomerWrapper implements Wrapper<Customer> {
         dateOfBirth = new SimpleObjectProperty<>();
         validated = new SimpleBooleanProperty();
         gender = new SimpleObjectProperty<>();
+        updateValues();
     }
 
     @Override
