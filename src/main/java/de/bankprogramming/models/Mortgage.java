@@ -15,9 +15,9 @@ public class Mortgage extends Loan {
 	private double repaymentPenalty;
 	private String insurance;
 
-	public Mortgage(ProductType type, long customerID, double amount, double interestRate, double loanToValueLimit,
+	public Mortgage(ProductType type, Customer owner, double amount, double interestRate, double loanToValueLimit,
 			String insurance, Period duration) {
-		super(type, customerID, amount, interestRate, duration);
+		super(type, owner, amount, interestRate, duration);
 		this.loanToValueLimit = loanToValueLimit;
 		this.insurance = insurance;
 		fee = 35;

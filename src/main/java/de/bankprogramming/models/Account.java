@@ -18,8 +18,8 @@ public class Account extends Product {
 	 *
 	 * @param type
 	 */
-	public Account(final ProductType type, final long customerID) {
-		super(type, customerID);
+	public Account(final ProductType type, final Customer owner) {
+		super(type, owner);
 		balance = 0.0;
 		locked = false;
 		limit = 500;

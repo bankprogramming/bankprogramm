@@ -18,9 +18,9 @@ public class Card extends Product {
 
 	private long accountID;
 
-	public Card(ProductType type, long customerID, double yearlyFee, String cardStyle, int limit, boolean international,
+	public Card(ProductType type, Customer owner, double yearlyFee, String cardStyle, int limit, boolean international,
 			boolean locked, long accountID) {
-		super(type, customerID);
+		super(type, owner);
 		this.yearlyFee = yearlyFee;
 		this.cardStyle = cardStyle;
 		this.limit = limit;

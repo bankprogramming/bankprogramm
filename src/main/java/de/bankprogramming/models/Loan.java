@@ -14,8 +14,8 @@ public class Loan extends Product {
 	private double interestRate;
 	private Period duration;
 
-	public Loan(ProductType type, long customerID, double amount, double interestRate, Period duration) {
-		super(type, customerID);
+	public Loan(ProductType type, Customer owner, double amount, double interestRate, Period duration) {
+		super(type, owner);
 		this.amount = amount;
 		this.interestRate = interestRate;
 	}

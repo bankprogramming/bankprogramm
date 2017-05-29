@@ -15,9 +15,9 @@ public class Credit extends Loan {
 
 	// falls nicht validiert, nicht auflisten im GUI, kann nur bei validierten
 	// erstellt werden
-	public Credit(ProductType type, long customerID, KindOfPayback kop, double amount, double interestRate,
+	public Credit(ProductType type, Customer owner, KindOfPayback kop, double amount, double interestRate,
 			Period duration) {
-		super(type, customerID, amount, interestRate, duration);
+		super(type, owner, amount, interestRate, duration);
 		this.kop = kop;
 	}
 

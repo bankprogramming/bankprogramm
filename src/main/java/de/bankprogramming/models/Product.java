@@ -17,17 +17,17 @@ public class Product {
 	private LocalDate endDate;
 	private ProductType type;
 
-	private long customerID;
+	private Customer owner;
 
 	/**
 	 *
 	 * @param type
 	 */
-	public Product(ProductType type, long customerID) {
+	public Product(ProductType type, Customer owner) {
 		this.type = type;
 		startDate = LocalDate.now();
 		// productID = ModelHelper.getProductID();
-		this.customerID = customerID;
+		this.owner = owner;
 	}
 
 	public long getProductID() {
@@ -62,12 +62,12 @@ public class Product {
 		this.type = type;
 	}
 
-	public long getCustomerID() {
-		return customerID;
+	public Customer getCustomerID() {
+		return owner;
 	}
 
-	public void setCustomerID(long customerID) {
-		this.customerID = customerID;
+	public void setCustomerID(Customer owner) {
+		this.owner = owner;
 	}
 
 }

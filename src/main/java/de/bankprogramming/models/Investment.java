@@ -14,8 +14,8 @@ public class Investment extends Product {
 	private List<String> portfolio;
 	private Strategy strategy;
 
-	public Investment(ProductType type, long customerID, List<String> portfolio, Strategy strategy) {
-		super(type, customerID);
+	public Investment(ProductType type, Customer owner, List<String> portfolio, Strategy strategy) {
+		super(type, owner);
 		this.portfolio = portfolio;
 		this.strategy = strategy;
 	}

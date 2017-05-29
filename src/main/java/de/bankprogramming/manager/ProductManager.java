@@ -22,7 +22,7 @@ public class ProductManager {
 			final double interestRate) {
 		switch (type) {
 		case CurrentAccount:
-			Account currAcc = new Account(type, customer.getCustomerId());
+			Account currAcc = new Account(type, customer);
 
 			ph.addProduct(currAcc);
 			customer.getProducts().add(currAcc);
@@ -39,6 +39,10 @@ public class ProductManager {
 		default:
 			// TODO invalid account type
 		}
+	}
+
+	public void deleteAccount(final Account acc) {
+
 	}
 
 	public void blockCard(Card card) {

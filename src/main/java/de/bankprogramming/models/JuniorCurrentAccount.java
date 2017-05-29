@@ -11,8 +11,8 @@ public class JuniorCurrentAccount extends Account {
 	private long guardian;
 	private int maxAge;
 
-	public JuniorCurrentAccount(ProductType type, long customerID, long guardian) {
-		super(type, customerID);
+	public JuniorCurrentAccount(ProductType type, Customer owner, long guardian) {
+		super(type, owner);
 		this.guardian = guardian;
 		maxAge = 16;
 	}

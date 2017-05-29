@@ -13,9 +13,9 @@ public class PensionPlan extends Investment {
 
 	private double monthlyInput;
 
-	public PensionPlan(ProductType type, long customerID, List<String> portfolio, Strategy strategy,
+	public PensionPlan(ProductType type, Customer owner, List<String> portfolio, Strategy strategy,
 			double monthlyInput) {
-		super(type, customerID, portfolio, strategy);
+		super(type, owner, portfolio, strategy);
 		this.monthlyInput = monthlyInput;
 	}
 
