@@ -184,12 +184,13 @@ public class CustomerManager {
 		if(customerHelper.getCustomer(customerID)==null){
 			throw new IllegalArgumentException("customerID is no valid, HashMap does not contain this ID:deleteAccount");
 		}
-		if(account. ){
+		//TODO account belongs to customer check
+		if(account== null){
 			throw new IllegalArgumentException("The Account does not belong to the customer: deleteAccount");
 		}
 
 
-		customerHelper.getCustomer(customerID).getProducts().contains()
+		//customerHelper.getCustomer(customerID).getProducts().contains()
 
 	}
 }
