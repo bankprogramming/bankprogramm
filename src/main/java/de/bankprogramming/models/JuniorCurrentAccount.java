@@ -8,10 +8,10 @@ import de.bankprogramming.models.enums.ProductType;
 
 public class JuniorCurrentAccount extends Account {
 
-	private long guardian;
+	private Customer guardian;
 	private int maxAge;
 
-	public JuniorCurrentAccount(ProductType type, Customer owner, long guardian) {
+	public JuniorCurrentAccount(ProductType type, Customer owner, Customer guardian) {
 		super(type, owner);
 		this.guardian = guardian;
 		maxAge = 16;
@@ -27,11 +27,11 @@ public class JuniorCurrentAccount extends Account {
 	// }
 	// }
 
-	public long getGuardian() {
+	public Customer getGuardian() {
 		return guardian;
 	}
 
-	public void setGuardian(long guardian) {
+	public void setGuardian(Customer guardian) {
 		this.guardian = guardian;
 	}
 
