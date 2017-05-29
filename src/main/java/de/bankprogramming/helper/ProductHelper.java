@@ -25,11 +25,16 @@ public class ProductHelper {
 	final File file;
 
 	/**
-	 *
+	 * Constructor
 	 */
 	public ProductHelper() {
 		gson = new Gson();
 		file = getFileReference();
+		if (file.exists()) {
+			loadProducts();
+		} else {
+			// exception
+		}
 	}
 
 	/**
@@ -45,6 +50,20 @@ public class ProductHelper {
 
 	public Product getProduct(Long id) {
 		return products.get(id);
+	}
+
+	/**
+	 * 
+	 * @param product
+	 * @return
+	 */
+	public boolean addProduct(Product product) {
+		if (product != null) {
+			products.put(product.getProductID(), product);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/*
@@ -84,6 +103,10 @@ public class ProductHelper {
 				ioe.printStackTrace();
 			}
 		}
+	}
+
+	private void saveProducts() {
+
 	}
 
 }

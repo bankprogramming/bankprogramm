@@ -23,7 +23,7 @@ public class CustomerHelper {
 	final File file;
 
 	/**
-	 *
+	 * Constructor
 	 */
 	private CustomerHelper() {
 		gson = new Gson();
@@ -40,6 +40,31 @@ public class CustomerHelper {
 		}
 		return CustomerHelper.instance;
 	}
+
+	/*
+	 * public
+	 */
+	public Customer getCustomer(Long id) {
+		return customers.get(id);
+	}
+
+	/**
+	 * 
+	 * @param customer
+	 * @returns true if customer is not null and true if the customer was
+	 *          succesfully added to the map
+	 */
+	public boolean addCustomer(final Customer customer) {
+		if (customer != null) {
+			customers.put(customer.getCustomerId(), customer);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	/*
+	 * private
+	 */
 
 	/**
 	 *
