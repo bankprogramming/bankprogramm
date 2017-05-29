@@ -7,12 +7,17 @@ package de.bankprogramming.helper;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
+
+import de.bankprogramming.models.Customer;
 
 public class CustomerHelper {
 
 	private static CustomerHelper instance;
+
+	private HashMap<Long, Customer> customers;
 
 	Gson gson;
 	final File file;
@@ -23,9 +28,12 @@ public class CustomerHelper {
 	private CustomerHelper() {
 		gson = new Gson();
 		file = getFileReference();
-
 	}
 
+	/**
+	 *
+	 * @return
+	 */
 	public static CustomerHelper getInstance() {
 		if (CustomerHelper.instance == null) {
 			CustomerHelper.instance = new CustomerHelper();
@@ -35,7 +43,7 @@ public class CustomerHelper {
 
 	/**
 	 *
-	 * @returns the file with the metadata
+	 * @returns the file containing the customers
 	 */
 	private File getFileReference() {
 		File file = new File("Customers.json");
@@ -46,8 +54,8 @@ public class CustomerHelper {
 
 				// write default content to file
 				try (FileWriter writer = new FileWriter(file)) {
-					int prodID = 0;
-					gson.toJson(prodID, writer);
+					HashMap<Long, Customer> map = new HashMap<>();
+					gson.toJson(map, writer);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

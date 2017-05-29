@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
@@ -25,7 +26,7 @@ public class ModelHelper {
 
 		try (FileReader reader = new FileReader(file)) {
 			if (reader.ready()) {
-				metaData = gson.fromJson(reader, new HashMap<String, Integer>().getClass());
+				metaData = gson.fromJson(reader, (Type) metaData);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -38,6 +39,10 @@ public class ModelHelper {
 		}
 		return ModelHelper.instance;
 	}
+
+	/*
+	 * public
+	 */
 
 	/**
 	 *
@@ -75,9 +80,13 @@ public class ModelHelper {
 		return currentID;
 	}
 
+	/*
+	 * private
+	 */
+
 	/**
 	 *
-	 * @returns the file with the metadata
+	 * @returns the file containing the metadata
 	 */
 	private File getFileReference() {
 		File file = new File("MetaData.json");

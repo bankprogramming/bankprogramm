@@ -7,5 +7,6 @@ package de.bankprogramming.manager;
 public class ProductManager {
 
 	public ProductManager() {
+
 	}
 }
