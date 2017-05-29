@@ -22,7 +22,7 @@ public class Customer {
 	private boolean validated;
 	private Gender gender;
 
-	private ArrayList<Long> products;
+	private ArrayList<Product> products;
 
 	public Customer(final String name, final String address, final String telNumber, final LocalDate dateofBirth,
 			final boolean validated, final Gender gender) {
@@ -33,7 +33,17 @@ public class Customer {
 		this.dateOfBirth = dateofBirth;
 		this.validated = validated;
 		this.gender = gender;
-		products = new ArrayList<Long>();
+		products = new ArrayList<Product>();
+	}
+
+	public ArrayList<Account> getAccounts() {
+		ArrayList<Account> list = new ArrayList<>();
+		for (Product p : products) {
+			if (p instanceof Account) {
+				list.add((Account) p);
+			}
+		}
+		return list;
 	}
 
 	public int getAge() {
@@ -98,11 +108,11 @@ public class Customer {
 		this.gender = gender;
 	}
 
-	public ArrayList<Long> getProducts() {
+	public ArrayList<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(ArrayList<Long> products) {
+	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
 	}
 

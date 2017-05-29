@@ -7,6 +7,7 @@ package de.bankprogramming.helper;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
@@ -41,8 +42,29 @@ public class CustomerHelper {
 		return CustomerHelper.instance;
 	}
 
+	/**
+	 * 
+	 * @returns all currently saved customers
+	 */
+	public ArrayList<Customer> getAllCustomers() {
+		return (ArrayList<Customer>) customers.values();
+	}
+
+	/**
+	 * 
+	 * @param id
+	 */
+	public void deleteCustomer(final long id) {
+		customers.remove(id);
+	}
+
 	/*
 	 * public
+	 */
+	/**
+	 * 
+	 * @param id
+	 * @returns the customer or null if no mapping exists
 	 */
 	public Customer getCustomer(Long id) {
 		return customers.get(id);

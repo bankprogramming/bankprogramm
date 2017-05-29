@@ -66,6 +66,7 @@ public class ProductHelper {
 	public boolean addProduct(Product product) {
 		if (product != null) {
 			products.put(product.getProductID(), product);
+			saveProducts();
 			return true;
 		} else {
 			return false;
