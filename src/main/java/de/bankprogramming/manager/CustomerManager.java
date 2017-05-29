@@ -5,6 +5,7 @@
 package de.bankprogramming.manager;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import de.bankprogramming.helper.CustomerHelper;
 import de.bankprogramming.models.Account;
@@ -153,14 +154,14 @@ public class CustomerManager {
 
 	}
 
-	public void listCustomers(){
+	public 	ArrayList<Customer> listCustomers(){
+		if(customerHelper.getAllCustomers()==null){
+			throw new IllegalArgumentException("You dont have any customers: listCustomers");
+		}
 
+		ArrayList<Customer> listCustomer = customerHelper.getAllCustomers();
 
-		//TODO get all custoemrs list
-
-		//create a list with customer object and account balacne
-
-
+		return listCustomer;
 	}
 
 	public void deleteCustomer(Long customerID){
@@ -171,26 +172,9 @@ public class CustomerManager {
 			throw new IllegalArgumentException("customerID is no valid, HashMap does not contain this ID:deleteCustomer");
 		}
 
-			//delete customer with customerhelper
-	}
-
-	public void deleteAccount(Long customerID, Account account){
-		if(customerID==null){
-			throw new NullPointerException("customerID is null in deleteAccount");
-		}
-		if(account==null){
-			throw new NullPointerException("account is null in deleteAccount");
-		}
-		if(customerHelper.getCustomer(customerID)==null){
-			throw new IllegalArgumentException("customerID is no valid, HashMap does not contain this ID:deleteAccount");
-		}
-		//TODO account belongs to customer check
-		if(account== null){
-			throw new IllegalArgumentException("The Account does not belong to the customer: deleteAccount");
-		}
-
-
-		//customerHelper.getCustomer(customerID).getProducts().contains()
+		customerHelper.deleteCustomer(customerID);
 
 	}
+
+
 }
