@@ -190,7 +190,7 @@ public class CustomerManager {
 			customerHelper.getCustomer(customerID).getProducts().remove(p);
 
 		}
-		
+
 		customerHelper.deleteCustomer(customerID);
 
 
