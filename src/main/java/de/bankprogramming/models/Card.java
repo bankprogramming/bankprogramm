@@ -16,14 +16,17 @@ public class Card extends Product {
 	private boolean international;
 	private boolean locked;
 
+	private long accountID;
+
 	public Card(ProductType type, long customerID, double yearlyFee, String cardStyle, int limit, boolean international,
-			boolean locked) {
+			boolean locked, long accountID) {
 		super(type, customerID);
 		this.yearlyFee = yearlyFee;
 		this.cardStyle = cardStyle;
 		this.limit = limit;
 		this.international = international;
 		this.locked = locked;
+		this.setAccountID(accountID);
 	}
 
 	public double getYearlyFee() {
@@ -64,5 +67,13 @@ public class Card extends Product {
 
 	public void setLocked(boolean locked) {
 		this.locked = locked;
+	}
+
+	public long getAccountID() {
+		return accountID;
+	}
+
+	public void setAccountID(long accountID) {
+		this.accountID = accountID;
 	}
 }

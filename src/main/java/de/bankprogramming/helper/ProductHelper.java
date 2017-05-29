@@ -38,8 +38,8 @@ public class ProductHelper {
 	}
 
 	/**
-	 *
-	 * @return
+	 * 
+	 * @returns an instance of the product helper
 	 */
 	public static ProductHelper getInstance() {
 		if (ProductHelper.instance == null) {
@@ -48,6 +48,11 @@ public class ProductHelper {
 		return ProductHelper.instance;
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @returns the product with the specified id
+	 */
 	public Product getProduct(Long id) {
 		return products.get(id);
 	}
@@ -55,7 +60,8 @@ public class ProductHelper {
 	/**
 	 * 
 	 * @param product
-	 * @return
+	 * @returns true if the product was successfully added and false if the
+	 *          product was null
 	 */
 	public boolean addProduct(Product product) {
 		if (product != null) {
@@ -95,6 +101,9 @@ public class ProductHelper {
 		return file;
 	}
 
+	/**
+	 * 
+	 */
 	private void loadProducts() {
 		if (file != null) {
 			try (FileReader reader = new FileReader(file)) {
@@ -105,8 +114,15 @@ public class ProductHelper {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	private void saveProducts() {
-
+		try (FileWriter writer = new FileWriter(file)) {
+			gson.toJson(products, writer);
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 }
