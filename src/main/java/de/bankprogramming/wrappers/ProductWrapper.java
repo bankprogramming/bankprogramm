@@ -1,5 +1,6 @@
 package de.bankprogramming.wrappers;
 
+import de.bankprogramming.models.Customer;
 import de.bankprogramming.models.Product;
 import de.bankprogramming.models.enums.ProductType;
 import javafx.beans.property.LongProperty;
@@ -20,7 +21,7 @@ public class ProductWrapper implements Wrapper<Product> {
     private ObjectProperty<LocalDate> startDate;
     private ObjectProperty<LocalDate> endDate;
     private ObjectProperty<ProductType> type;
-    private LongProperty customerID;
+    private ObjectProperty<Customer> owner;
 
     public ProductWrapper(Product original) {
         this.original = original;
@@ -28,7 +29,7 @@ public class ProductWrapper implements Wrapper<Product> {
         startDate = new SimpleObjectProperty<>();
         endDate = new SimpleObjectProperty<>();
         type = new SimpleObjectProperty<>();
-        customerID = new SimpleLongProperty();
+        owner = new SimpleObjectProperty<>();
     }
 
     @Override
@@ -42,7 +43,7 @@ public class ProductWrapper implements Wrapper<Product> {
         startDate.set(original.getStartDate());
         endDate.set(original.getEndDate());
         type.set(original.getType());
-        customerID.set(original.getCustomerID());
+        owner.set(original.getOwner());
     }
 
     public long getProductID() {
@@ -93,15 +94,15 @@ public class ProductWrapper implements Wrapper<Product> {
         this.type.set(type);
     }
 
-    public long getCustomerID() {
-        return customerID.get();
+    public Customer getOwner() {
+        return owner.get();
     }
 
-    public LongProperty customerIDProperty() {
-        return customerID;
+    public ObjectProperty<Customer> ownerProperty() {
+        return owner;
     }
 
-    public void setCustomerID(long customerID) {
-        this.customerID.set(customerID);
+    public void setOwner(Customer owner) {
+        this.owner.set(owner);
     }
 }

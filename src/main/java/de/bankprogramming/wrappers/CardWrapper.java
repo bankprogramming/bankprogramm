@@ -1,6 +1,5 @@
 package de.bankprogramming.wrappers;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import de.bankprogramming.models.Card;
 import javafx.beans.property.*;
 
