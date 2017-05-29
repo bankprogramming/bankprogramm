@@ -18,31 +18,44 @@ public class ProductManager {
 		ph = ProductHelper.getInstance();
 	}
 
-	public void openAccount(final Customer customer, final ProductType type, final double balance, final double limit,
-			final double interestRate) {
-		switch (type) {
-		case CurrentAccount:
-			Account currAcc = new Account(type, customer);
+	public void openAccount(Customer customer, final ProductType type, final Double balance, final Double limit,
+			final Double interestRate, Customer guardian) {
+		Account acc;
+		if (type == ProductType.CurrentAccount || type == ProductType.JuniorCurrentAccount
+				|| type == ProductType.CorporateAccount || type == ProductType.StudentAccount) {
+			acc = new Account(type, customer);
+			if (balance != null && balance >= 0.0) {
+				acc.setBalance(balance);
+			}
+			if (limit != null && limit >= 0.0) {
+				acc.setLimit(limit);
+			}
+			if (interestRate != null && interestRate >= 0.0) {
+				acc.setInterestRate(interestRate);
+			}
+			switch (type) {
+			case CurrentAccount:
+				break;
+			case JuniorCurrentAccount:
+				acc = new Account(type, customer);
 
-			ph.addProduct(currAcc);
-			customer.getProducts().add(currAcc);
-			break;
-		case JuniorCurrentAccount:
+				break;
+			case CorporateAccount:
 
-			break;
-		case CorporateAccount:
+				break;
+			case StudentAccount:
 
-			break;
-		case StudentAccount:
-
-			break;
-		default:
-			// TODO invalid account type
+				break;
+			}
+			ph.addProduct(acc);
+			customer.getProducts().add(acc);
 		}
 	}
 
 	public void deleteAccount(final Account acc) {
-
+		Customer owner = acc.getOwner();
+		owner.getProducts().remove(acc);
+		ph.deleteProduct(acc);
 	}
 
 	public void blockCard(Card card) {
