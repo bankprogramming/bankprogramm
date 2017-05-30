@@ -5,14 +5,21 @@
 package de.bankprogramming.helper;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapter;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
 import de.bankprogramming.models.Customer;
+import de.bankprogramming.models.Product;
 
 public class CustomerHelper {
 
@@ -21,15 +28,18 @@ public class CustomerHelper {
 	private HashMap<Long, Customer> customers;
 
 	Gson gson;
-	// final File file;
+	final File file;
 
 	/**
 	 * Constructor
 	 */
 	private CustomerHelper() {
+		GsonBuilder gb = new GsonBuilder();
+		gb.registerTypeAdapter(Product.class, new CustomerAdapter());
+
 		gson = new Gson();
 		customers = new HashMap<>();
-		// file = getFileReference();
+		file = getFileReference();
 	}
 
 	/**
@@ -57,6 +67,7 @@ public class CustomerHelper {
 	 */
 	public void deleteCustomer(final long id) {
 		customers.remove(id);
+		saveCustomers();
 	}
 
 	/*
@@ -81,6 +92,7 @@ public class CustomerHelper {
 	public boolean addCustomer(final Customer customer) {
 		if (customer != null) {
 			customers.put(customer.getCustomerId(), customer);
+			saveCustomers();
 			return true;
 		} else {
 			return false;
@@ -114,6 +126,45 @@ public class CustomerHelper {
 			e.printStackTrace();
 		}
 		return file;
+	}
+
+	/**
+	 * 
+	 */
+	private void saveCustomers() {
+		try (FileWriter writer = new FileWriter(file)) {
+			gson.toJson(customers, writer);
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private void loadCustomers() {
+		if (file != null) {
+			try (FileReader reader = new FileReader(file)) {
+				customers = gson.fromJson(reader, new TypeToken<HashMap<Long, Customer>>() {
+				}.getType());
+			} catch (IOException ioe) {
+				ioe.printStackTrace();
+			}
+		}
+	}
+
+	private class CustomerAdapter extends TypeAdapter<Product> {
+
+		@Override
+		public void write(JsonWriter out, Product value) throws IOException {
+			out.name("productID").value(value.getProductID());
+		}
+
+		@Override
+		public Product read(JsonReader in) throws IOException {
+			return ProductHelper.getInstance().getProduct(in.nextLong());
+		}
+
 	}
 
 }
