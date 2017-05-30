@@ -48,7 +48,7 @@ public class CustomerHelper {
 	 * @returns all currently saved customers
 	 */
 	public ArrayList<Customer> getAllCustomers() {
-		return  new ArrayList<Customer>(customers.values());
+		return new ArrayList<Customer>(customers.values());
 	}
 
 	/**
@@ -97,20 +97,21 @@ public class CustomerHelper {
 	private File getFileReference() {
 		File file = new File("Customers.json");
 
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
+		if (file.exists()) {
+			file.delete();
+		}
+		try {
+			file.createNewFile();
 
-				// write default content to file
-				try (FileWriter writer = new FileWriter(file)) {
-					HashMap<Long, Customer> map = new HashMap<>();
-					gson.toJson(map, writer);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			// write default content to file
+			try (FileWriter writer = new FileWriter(file)) {
+				HashMap<Long, Customer> map = new HashMap<>();
+				gson.toJson(map, writer);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return file;
 	}

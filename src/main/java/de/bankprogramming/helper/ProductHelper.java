@@ -92,20 +92,21 @@ public class ProductHelper {
 	private File getFileReference() {
 		File file = new File("Product.json");
 
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
+		if (file.exists()) {
+			file.delete();
+		}
+		try {
+			file.createNewFile();
 
-				// write default content to file
-				try (FileWriter writer = new FileWriter(file)) {
-					HashMap<Long, Product> map = new HashMap<>();
-					gson.toJson(map, writer);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			// write default content to file
+			try (FileWriter writer = new FileWriter(file)) {
+				HashMap<Long, Product> map = new HashMap<>();
+				gson.toJson(map, writer);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return file;
 	}
