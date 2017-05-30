@@ -23,13 +23,19 @@ public class ProductWrapper implements Wrapper<Product> {
     private ObjectProperty<ProductType> type;
     private ObjectProperty<Customer> owner;
 
-    public ProductWrapper(Product original) {
+    public ProductWrapper(Product original, boolean updateValues) {
         this.original = original;
         productID = new SimpleLongProperty();
         startDate = new SimpleObjectProperty<>();
         endDate = new SimpleObjectProperty<>();
         type = new SimpleObjectProperty<>();
         owner = new SimpleObjectProperty<>();
+        if(updateValues)
+            updateValues();
+    }
+
+    public ProductWrapper(Product original) {
+        this(original, true);
     }
 
     @Override

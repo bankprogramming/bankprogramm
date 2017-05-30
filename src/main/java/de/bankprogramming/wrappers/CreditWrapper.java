@@ -13,10 +13,16 @@ public class CreditWrapper extends LoanWrapper {
 
     private ObjectProperty<KindOfPayback> kop;
 
-    public CreditWrapper(Credit original) {
-        super(original);
+    public CreditWrapper(Credit original, boolean updateValues) {
+        super(original, false);
         this.original = original;
         kop = new SimpleObjectProperty<>();
+        if(updateValues)
+            updateValues();
+    }
+
+    public CreditWrapper(Credit original){
+        this(original, true);
     }
 
     @Override

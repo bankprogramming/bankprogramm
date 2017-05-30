@@ -28,6 +28,7 @@ public class CustomerHelper {
 	 */
 	private CustomerHelper() {
 		gson = new Gson();
+		customers = new HashMap<>();
 		// file = getFileReference();
 	}
 
@@ -47,7 +48,7 @@ public class CustomerHelper {
 	 * @returns all currently saved customers
 	 */
 	public ArrayList<Customer> getAllCustomers() {
-		return (ArrayList<Customer>) customers.values();
+		return  new ArrayList<Customer>(customers.values());
 	}
 
 	/**

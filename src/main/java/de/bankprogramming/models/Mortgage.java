@@ -25,7 +25,7 @@ public class Mortgage extends Loan {
 	}
 
 	public double monthlyAmount() {
-		return (this.getAmount() * (100 + this.getInterestRate())) / this.getDuration().getMonths();
+		return (this.getAmount() * (100 + this.getInterestRate())) / 1;//this.getDuration().getMonths();
 	}
 
 	public double getLoanToValueLimit() {

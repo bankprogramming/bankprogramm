@@ -19,12 +19,13 @@ public class MortgageWrapper extends LoanWrapper {
     private StringProperty insurance;
 
     public MortgageWrapper(Mortgage original) {
-        super(original);
+        super(original, false);
         this.original = original;
         loanToValueLimit = new SimpleDoubleProperty();
         fee = new SimpleDoubleProperty();
         repaymentPenalty = new SimpleDoubleProperty();
         insurance = new SimpleStringProperty();
+        updateValues();
     }
 
     @Override

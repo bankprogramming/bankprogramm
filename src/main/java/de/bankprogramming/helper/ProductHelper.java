@@ -28,6 +28,7 @@ public class ProductHelper {
 	 */
 	public ProductHelper() {
 		gson = new Gson();
+		products = new HashMap<>();
 		// file = getFileReference();
 		// if (file.exists()) {
 		// loadProducts();

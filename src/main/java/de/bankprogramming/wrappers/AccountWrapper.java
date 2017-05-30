@@ -1,7 +1,6 @@
 package de.bankprogramming.wrappers;
 
 import de.bankprogramming.models.Account;
-import de.bankprogramming.models.Product;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -20,14 +19,19 @@ public class AccountWrapper extends ProductWrapper {
 
     private BooleanProperty locked;
 
-    public AccountWrapper(Account original) {
-        super(original);
+    public AccountWrapper(Account original, boolean updateValues) {
+        super(original, false);
         this.original = original;
         balance = new SimpleDoubleProperty();
         limit = new SimpleDoubleProperty();
         interestRate = new SimpleDoubleProperty();
         locked = new SimpleBooleanProperty();
-        updateValues();
+        if(updateValues)
+            updateValues();
+    }
+
+    public AccountWrapper(Account original){
+        this(original, true);
     }
 
 

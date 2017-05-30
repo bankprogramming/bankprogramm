@@ -17,15 +17,20 @@ public class CardWrapper extends ProductWrapper {
     private BooleanProperty international;
     private BooleanProperty locked;
 
-    public CardWrapper(Card original) {
-        super(original);
+    public CardWrapper(Card original, boolean updateValues) {
+        super(original, false);
         this.original = original;
         yearlyFee = new SimpleDoubleProperty();
         cardStyle = new SimpleStringProperty();
         limit = new SimpleIntegerProperty();
         international = new SimpleBooleanProperty();
         locked = new SimpleBooleanProperty();
-        updateValues();
+        if(updateValues)
+            updateValues();
+    }
+
+    public CardWrapper(Card original){
+        this(original, true);
     }
 
     @Override
