@@ -97,10 +97,8 @@ public class ModelHelper {
 
 				// write default content to file
 				try (FileWriter writer = new FileWriter(file)) {
-					metaData = new HashMap<>();
-					metaData.put("prodID", new Integer(0));
-					metaData.put("customerID", new Integer(0));
-					gson.toJson(metaData, writer);
+					int prodID = 0;
+					gson.toJson(prodID, writer);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

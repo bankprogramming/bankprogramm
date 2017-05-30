@@ -5,10 +5,8 @@
 package de.bankprogramming.helper;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,14 +21,14 @@ public class ProductHelper {
 	private HashMap<Long, Product> products;
 
 	Gson gson;
-	final File file;
+	// final File file;
 
 	/**
 	 * Constructor
 	 */
 	public ProductHelper() {
 		gson = new Gson();
-		file = getFileReference();
+		// file = getFileReference();
 		// if (file.exists()) {
 		// loadProducts();
 		// } else {
@@ -93,21 +91,20 @@ public class ProductHelper {
 	private File getFileReference() {
 		File file = new File("Product.json");
 
-		if (file.exists()) {
-			file.delete();
-		}
-		try {
-			file.createNewFile();
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
 
-			// write default content to file
-			try (FileWriter writer = new FileWriter(file)) {
-				HashMap<Long, Product> map = new HashMap<>();
-				gson.toJson(map, writer);
+				// write default content to file
+				try (FileWriter writer = new FileWriter(file)) {
+					HashMap<Long, Product> map = new HashMap<>();
+					gson.toJson(map, writer);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return file;
 	}
@@ -115,25 +112,25 @@ public class ProductHelper {
 	/**
 	 * 
 	 */
-	private void loadProducts() {
-		if (file != null) {
-			try (FileReader reader = new FileReader(file)) {
-				products = gson.fromJson(reader, (Type) products);
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
-			}
-		}
-	}
+	// private void loadProducts() {
+	// if (file != null) {
+	// try (FileReader reader = new FileReader(file)) {
+	// products = gson.fromJson(reader, (Type) products);
+	// } catch (IOException ioe) {
+	// ioe.printStackTrace();
+	// }
+	// }
+	// }
 
 	/**
 	 * 
 	 */
-	private void saveProducts() {
-		try (FileWriter writer = new FileWriter(file)) {
-			gson.toJson(products, writer);
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-	}
+	// private void saveProducts() {
+	// try (FileWriter writer = new FileWriter(file)) {
+	// gson.toJson(products, writer);
+	// } catch (IOException ioe) {
+	// ioe.printStackTrace();
+	// }
+	// }
 
 }

@@ -21,14 +21,14 @@ public class CustomerHelper {
 	private HashMap<Long, Customer> customers;
 
 	Gson gson;
-	final File file;
+	// final File file;
 
 	/**
 	 * Constructor
 	 */
 	private CustomerHelper() {
 		gson = new Gson();
-		file = getFileReference();
+		// file = getFileReference();
 	}
 
 	/**
@@ -96,21 +96,20 @@ public class CustomerHelper {
 	private File getFileReference() {
 		File file = new File("Customers.json");
 
-		if (file.exists()) {
-			file.delete();
-		}
-		try {
-			file.createNewFile();
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
 
-			// write default content to file
-			try (FileWriter writer = new FileWriter(file)) {
-				HashMap<Long, Customer> map = new HashMap<>();
-				gson.toJson(map, writer);
+				// write default content to file
+				try (FileWriter writer = new FileWriter(file)) {
+					HashMap<Long, Customer> map = new HashMap<>();
+					gson.toJson(map, writer);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return file;
 	}
