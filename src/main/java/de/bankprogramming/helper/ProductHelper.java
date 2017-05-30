@@ -6,14 +6,12 @@ package de.bankprogramming.helper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import de.bankprogramming.models.Product;
 
@@ -24,7 +22,7 @@ public class ProductHelper {
 	private HashMap<Long, Product> products;
 
 	Gson gson;
-	final File file;
+	// final File file;
 
 	/**
 	 * Constructor
@@ -34,12 +32,12 @@ public class ProductHelper {
 	public ProductHelper() throws FileNotFoundException {
 		gson = new Gson();
 		products = new HashMap<>();
-		file = getFileReference();
-		if (file.exists()) {
-			loadProducts();
-		} else {
-			throw new FileNotFoundException();
-		}
+		// file = getFileReference();
+		// if (file.exists()) {
+		// loadProducts();
+		// } else {
+		// throw new FileNotFoundException();
+		// }
 	}
 
 	/**
@@ -76,7 +74,7 @@ public class ProductHelper {
 	public boolean addProduct(Product product) {
 		if (product != null) {
 			products.put(product.getProductID(), product);
-			saveProducts();
+			// saveProducts();
 			return true;
 		} else {
 			return false;
@@ -85,7 +83,7 @@ public class ProductHelper {
 
 	public void deleteProduct(Product p) {
 		products.remove(p.getProductID());
-		saveProducts();
+		// saveProducts();
 	}
 
 	/*
@@ -107,7 +105,7 @@ public class ProductHelper {
 
 			// write default content to file
 			try (FileWriter writer = new FileWriter(file)) {
-				HashMap<Long, Product> map = new HashMap<>();
+				HashMap<Long, ? extends Product> map = new HashMap<>();
 				gson.toJson(map, writer);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -121,26 +119,26 @@ public class ProductHelper {
 	/**
 	 * 
 	 */
-	private void loadProducts() {
-		if (file != null) {
-			try (FileReader reader = new FileReader(file)) {
-				products = gson.fromJson(reader, new TypeToken<HashMap<Long, Product>>() {
-				}.getType());
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
-			}
-		}
-	}
+	// private void loadProducts() {
+	// if (file != null) {
+	// try (FileReader reader = new FileReader(file)) {
+	// products = gson.fromJson(reader, new TypeToken<HashMap<Long, Product>>()
+	// {
+	// }.getType());
+	// } catch (IOException ioe) {
+	// ioe.printStackTrace();
+	// }
+	// }
+	// }
 
 	/**
 	 * 
 	 */
-	private void saveProducts() {
-		try (FileWriter writer = new FileWriter(file)) {
-			gson.toJson(products, writer);
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-	}
-
+	// private void saveProducts() {
+	// try (FileWriter writer = new FileWriter(file)) {
+	// gson.toJson(products, writer);
+	// } catch (IOException ioe) {
+	// ioe.printStackTrace();
+	// }
+	// }
 }

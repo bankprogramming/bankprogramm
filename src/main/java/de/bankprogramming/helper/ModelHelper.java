@@ -54,7 +54,7 @@ public class ModelHelper {
 		int prodID = metaData.get("productID");
 
 		int currentID = prodID + 1;
-		metaData.put("productID", prodID);
+		metaData.put("productID", currentID);
 
 		// save to file
 		try (FileWriter writer = new FileWriter(file)) {
