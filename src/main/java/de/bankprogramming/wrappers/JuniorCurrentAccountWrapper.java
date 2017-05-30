@@ -18,11 +18,17 @@ public class JuniorCurrentAccountWrapper extends AccountWrapper {
 	private ObjectProperty<Customer> guardian;
 	private IntegerProperty maxAge;
 
-	public JuniorCurrentAccountWrapper(JuniorCurrentAccount original) {
-		super(original);
+	public JuniorCurrentAccountWrapper(JuniorCurrentAccount original, boolean updateValues) {
+		super(original, false);
 		this.original = original;
 		guardian = new SimpleObjectProperty<>();
 		maxAge = new SimpleIntegerProperty();
+		if(updateValues)
+			updateValues();
+	}
+
+	public JuniorCurrentAccountWrapper(JuniorCurrentAccount original){
+		this(original, true);
 	}
 
 	@Override

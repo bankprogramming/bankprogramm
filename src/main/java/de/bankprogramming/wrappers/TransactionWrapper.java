@@ -32,6 +32,7 @@ public class TransactionWrapper implements Wrapper<Transaction>{
         amount = new SimpleDoubleProperty();
         timestamp = new SimpleObjectProperty<>();
         triggerDate = new SimpleObjectProperty<>();
+        updateValues();
     }
 
     @Override

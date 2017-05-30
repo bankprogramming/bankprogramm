@@ -1,9 +1,11 @@
 package de.bankprogramming.controllers;
 
 import com.google.inject.Inject;
+import de.bankprogramming.manager.CustomerManager;
 import de.bankprogramming.models.Account;
 import de.bankprogramming.models.Customer;
 import de.bankprogramming.models.enums.Gender;
+import de.bankprogramming.view.CustomerFrame;
 import de.bankprogramming.wrappers.CustomerWrapper;
 import de.bankprogramming.wrappers.Dummy.DummyCustomer;
 import javafx.beans.property.*;
@@ -19,6 +21,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -55,12 +58,13 @@ public class MainController implements Initializable{
     //Properties
     private ListProperty<CustomerWrapper> customerList;
     private ObjectProperty<CustomerWrapper> selectedCustomer;
+    private CustomerManager manager;
 
     @Inject
-    public MainController() {
+    public MainController(CustomerManager manager) {
         customerList = new SimpleListProperty<>(FXCollections.observableList(new ArrayList<>()));
-        customerList.add(new DummyCustomer());
         selectedCustomer = new SimpleObjectProperty<>();
+        this.manager = manager;
     }
 
     @Override
@@ -74,6 +78,16 @@ public class MainController implements Initializable{
         birthColumn.setCellValueFactory(param -> param.getValue().dateOfBirthProperty());
         telColumn.setCellValueFactory(param -> param.getValue().telNumberProperty());
 
+        updateList();
+    }
+
+    public void updateList() {
+        customerList.clear();
+        List<Customer> list = manager.listCustomers();
+        for (Customer c: manager.listCustomers()
+             ) {
+            customerList.add(new CustomerWrapper(c));
+        }
     }
 
     public void setStage(Stage primaryStage) {
@@ -99,6 +113,13 @@ public class MainController implements Initializable{
     @FXML
     public void onClean(ActionEvent event){
 
+    }
+
+    @FXML
+    public void onAddCustomer(ActionEvent event){
+        CustomerFrame frame = new CustomerFrame(null);
+        frame.showAndWait();
+        updateList();
     }
     //endregion
 

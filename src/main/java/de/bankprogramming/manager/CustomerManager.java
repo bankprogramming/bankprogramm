@@ -7,6 +7,8 @@ package de.bankprogramming.manager;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import de.bankprogramming.helper.CustomerHelper;
 import de.bankprogramming.models.Account;
 import de.bankprogramming.models.Customer;
@@ -15,14 +17,14 @@ import de.bankprogramming.models.enums.Gender;
 import de.bankprogramming.models.enums.ProductType;
 
 
+@Singleton
 public class CustomerManager {
 
 	private CustomerHelper customerHelper;
 
+	@Inject
 	public CustomerManager() {
 		customerHelper = CustomerHelper.getInstance();
-
-
 	}
 
 	/**
@@ -52,7 +54,7 @@ public class CustomerManager {
 		}
 		//endregion
 		//region test if strings are only whitespaces TODO catch exceptions
-		if(name.matches(".*\\w.*")){
+		/*if(name.matches(".*\\w.*")){
 			throw new IllegalArgumentException("name contains only whitepsaces in addNewCustomer");
 		}
 		if(address.matches(".*\\w.*")){
@@ -70,7 +72,7 @@ public class CustomerManager {
 		if(!(gender == Gender.Female ||gender == Gender.Male ||gender == Gender.Other ||gender == Gender.AH64)){
 			throw new IllegalArgumentException("gender is not validated in addNewCustomer");
 
-		}
+		}*/
 		//endregion
 
 

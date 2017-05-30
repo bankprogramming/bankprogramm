@@ -1,6 +1,7 @@
 package de.bankprogramming.wrappers;
 
 import de.bankprogramming.models.Investment;
+import de.bankprogramming.models.Product;
 import de.bankprogramming.models.enums.Strategy;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
@@ -18,11 +19,17 @@ public class InvestmentWrapper extends ProductWrapper {
     private ListProperty<String> portfolio;
     private ObjectProperty<Strategy> strategy;
 
-    public InvestmentWrapper(Investment original) {
-        super(original);
+    public InvestmentWrapper(Investment original, boolean updateValues) {
+        super(original, false);
         this.original = original;
-        portfolio = new SimpleListProperty<>(FXCollections.observableArrayList(original.getPortfolio()));
+        portfolio = new SimpleListProperty<>();
         strategy = new SimpleObjectProperty<>();
+        if(updateValues)
+            updateValues();
+    }
+
+    public InvestmentWrapper(Investment original) {
+        this(original, true);
     }
 
     @Override

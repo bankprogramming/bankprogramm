@@ -1,6 +1,7 @@
 package de.bankprogramming.wrappers;
 
 import de.bankprogramming.models.Loan;
+import de.bankprogramming.models.Mortgage;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -19,13 +20,18 @@ public class LoanWrapper extends ProductWrapper {
     private DoubleProperty interestRate;
     private ObjectProperty<Period> duration;
 
-    public LoanWrapper(Loan original) {
-        super(original);
+    public LoanWrapper(Loan original, boolean updateValues) {
+        super(original, false);
         this.original = original;
         amount = new SimpleDoubleProperty();
         interestRate = new SimpleDoubleProperty();
         duration = new SimpleObjectProperty<>();
-        updateValues();
+        if(updateValues)
+            updateValues();
+    }
+
+    public LoanWrapper(Loan original) {
+        this(original, true);
     }
 
     @Override

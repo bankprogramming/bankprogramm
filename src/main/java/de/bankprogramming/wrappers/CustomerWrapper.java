@@ -1,6 +1,7 @@
 package de.bankprogramming.wrappers;
 
 import de.bankprogramming.models.Customer;
+import de.bankprogramming.models.Product;
 import de.bankprogramming.models.enums.Gender;
 import javafx.beans.property.*;
 
@@ -21,6 +22,8 @@ public class CustomerWrapper implements Wrapper<Customer> {
     private BooleanProperty validated;
     private ObjectProperty<Gender> gender;
 
+    private ListProperty<ProductWrapper> products;
+
     public CustomerWrapper(Customer original) {
         this.original = original;
         customerId = new SimpleLongProperty();
@@ -30,7 +33,13 @@ public class CustomerWrapper implements Wrapper<Customer> {
         dateOfBirth = new SimpleObjectProperty<>();
         validated = new SimpleBooleanProperty();
         gender = new SimpleObjectProperty<>();
-        updateValues();
+        products = new SimpleListProperty<>();
+        if(original!=null)
+            updateValues();
+    }
+
+    public CustomerWrapper(){
+        this(null);
     }
 
     @Override
@@ -47,6 +56,14 @@ public class CustomerWrapper implements Wrapper<Customer> {
         dateOfBirth.set(original.getDateOfBirth());
         validated.set(original.isValidated());
         gender.set(original.getGender());
+        products.clear();
+        for (Product p :
+                original.getProducts()) {
+            products.add(WrapperHelper.wrapProduct(p));
+        }
+    }
+
+    public void applyChanges(){
     }
 
     public long getCustomerId() {
