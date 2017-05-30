@@ -5,6 +5,7 @@
 package de.bankprogramming.helper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,18 +28,26 @@ public class ProductHelper {
 
 	/**
 	 * Constructor
+	 * 
+	 * @throws FileNotFoundException
 	 */
-	public ProductHelper() {
+	public ProductHelper() throws FileNotFoundException {
 		gson = new Gson();
 		products = new HashMap<>();
 		file = getFileReference();
+		if (file.exists()) {
+			loadProducts();
+		} else {
+			throw new FileNotFoundException();
+		}
 	}
 
 	/**
 	 * 
+	 * @throws FileNotFoundException
 	 * @returns an instance of the product helper
 	 */
-	public static ProductHelper getInstance() {
+	public static ProductHelper getInstance() throws FileNotFoundException {
 		if (ProductHelper.instance == null) {
 			ProductHelper.instance = new ProductHelper();
 		}

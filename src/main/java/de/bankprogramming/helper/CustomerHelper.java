@@ -5,6 +5,7 @@
 package de.bankprogramming.helper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -32,21 +33,29 @@ public class CustomerHelper {
 
 	/**
 	 * Constructor
+	 * 
+	 * @throws FileNotFoundException
 	 */
-	private CustomerHelper() {
+	private CustomerHelper() throws FileNotFoundException {
 		GsonBuilder gb = new GsonBuilder();
 		gb.registerTypeAdapter(Product.class, new CustomerAdapter());
 
 		gson = new Gson();
 		customers = new HashMap<>();
 		file = getFileReference();
+		if (file.exists()) {
+			loadCustomers();
+		} else {
+			throw new FileNotFoundException();
+		}
 	}
 
 	/**
 	 *
 	 * @return
+	 * @throws FileNotFoundException
 	 */
-	public static CustomerHelper getInstance() {
+	public static CustomerHelper getInstance() throws FileNotFoundException {
 		if (CustomerHelper.instance == null) {
 			CustomerHelper.instance = new CustomerHelper();
 		}
@@ -109,21 +118,20 @@ public class CustomerHelper {
 	private File getFileReference() {
 		File file = new File("Customers.json");
 
-		if (file.exists()) {
-			file.delete();
-		}
-		try {
-			file.createNewFile();
+		if (!file.exists()) {
+			try {
+				file.createNewFile();
 
-			// write default content to file
-			try (FileWriter writer = new FileWriter(file)) {
-				HashMap<Long, Customer> map = new HashMap<>();
-				gson.toJson(map, writer);
+				// write default content to file
+				try (FileWriter writer = new FileWriter(file)) {
+					HashMap<Long, Customer> map = new HashMap<>();
+					gson.toJson(map, writer);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return file;
 	}
