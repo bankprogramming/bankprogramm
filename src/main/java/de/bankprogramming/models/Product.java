@@ -6,6 +6,7 @@ package de.bankprogramming.models;
 
 import java.time.LocalDate;
 
+import de.bankprogramming.helper.ModelHelper;
 import de.bankprogramming.models.enums.ProductType;
 
 public class Product {
@@ -26,7 +27,7 @@ public class Product {
 	public Product(ProductType type, Customer owner) {
 		this.type = type;
 		startDate = LocalDate.now();
-		// productID = ModelHelper.getProductID();
+		productID = ModelHelper.getInstance().getProductID();
 		this.owner = owner;
 	}
 
