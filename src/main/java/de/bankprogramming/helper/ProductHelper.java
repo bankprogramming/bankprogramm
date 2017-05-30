@@ -5,10 +5,8 @@
 package de.bankprogramming.helper;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,19 +21,19 @@ public class ProductHelper {
 	private HashMap<Long, Product> products;
 
 	Gson gson;
-	final File file;
+	// final File file;
 
 	/**
 	 * Constructor
 	 */
 	public ProductHelper() {
 		gson = new Gson();
-		file = getFileReference();
-		if (file.exists()) {
-			loadProducts();
-		} else {
-			// exception
-		}
+		// file = getFileReference();
+		// if (file.exists()) {
+		// loadProducts();
+		// } else {
+		// // exception
+		// }
 	}
 
 	/**
@@ -71,7 +69,7 @@ public class ProductHelper {
 	public boolean addProduct(Product product) {
 		if (product != null) {
 			products.put(product.getProductID(), product);
-			saveProducts();
+			// saveProducts();
 			return true;
 		} else {
 			return false;
@@ -114,25 +112,25 @@ public class ProductHelper {
 	/**
 	 * 
 	 */
-	private void loadProducts() {
-		if (file != null) {
-			try (FileReader reader = new FileReader(file)) {
-				products = gson.fromJson(reader, (Type) products);
-			} catch (IOException ioe) {
-				ioe.printStackTrace();
-			}
-		}
-	}
+	// private void loadProducts() {
+	// if (file != null) {
+	// try (FileReader reader = new FileReader(file)) {
+	// products = gson.fromJson(reader, (Type) products);
+	// } catch (IOException ioe) {
+	// ioe.printStackTrace();
+	// }
+	// }
+	// }
 
 	/**
 	 * 
 	 */
-	private void saveProducts() {
-		try (FileWriter writer = new FileWriter(file)) {
-			gson.toJson(products, writer);
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-	}
+	// private void saveProducts() {
+	// try (FileWriter writer = new FileWriter(file)) {
+	// gson.toJson(products, writer);
+	// } catch (IOException ioe) {
+	// ioe.printStackTrace();
+	// }
+	// }
 
 }

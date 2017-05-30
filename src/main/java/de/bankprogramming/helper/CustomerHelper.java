@@ -21,14 +21,14 @@ public class CustomerHelper {
 	private HashMap<Long, Customer> customers;
 
 	Gson gson;
-	final File file;
+	// final File file;
 
 	/**
 	 * Constructor
 	 */
 	private CustomerHelper() {
 		gson = new Gson();
-		file = getFileReference();
+		// file = getFileReference();
 	}
 
 	/**
