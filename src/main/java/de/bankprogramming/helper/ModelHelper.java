@@ -58,7 +58,7 @@ public class ModelHelper {
 
 		// save to file
 		try (FileWriter writer = new FileWriter(file)) {
-			gson.toJson(prodID, writer);
+			gson.toJson(metaData, writer);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -73,7 +73,7 @@ public class ModelHelper {
 
 		// save to file
 		try (FileWriter writer = new FileWriter(file)) {
-			gson.toJson(custID, writer);
+			gson.toJson(metaData, writer);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
