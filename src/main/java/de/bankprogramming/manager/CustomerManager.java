@@ -31,7 +31,7 @@ public class CustomerManager {
 	 *	TODO check code
 	 */
 	public Customer addNewCustomer( String name,  String address,  String telNumber,  LocalDate dateofBirth,
-							    boolean validated,  Gender gender){
+							    boolean validated,  Gender gender)throws IllegalArgumentException,NullPointerException{
 
 		//region Check arguments
 		//region check if agrument are null TODO catch exception
@@ -85,7 +85,7 @@ public class CustomerManager {
 	 * TODO check code
 	 */
 	public void updatePersonDetails(String name,  String address,  String telNumber,  LocalDate dateofBirth,
-									boolean validated,  Gender gender,Long customerID){
+									boolean validated,  Gender gender,Long customerID)throws IllegalArgumentException,NullPointerException{
 		//region Check arguments
 		//region check if agrument are null TODO catch exception
 		if(name==null){
@@ -157,7 +157,7 @@ public class CustomerManager {
 
 	}
 
-	public 	ArrayList<Customer> listCustomers(){
+	public 	ArrayList<Customer> listCustomers()throws IllegalArgumentException{
 		if(customerHelper.getAllCustomers()==null){
 			throw new IllegalArgumentException("You dont have any customers: listCustomers");
 		}
@@ -167,7 +167,7 @@ public class CustomerManager {
 		return listCustomer;
 	}
 
-	public void deleteCustomer(Long customerID){
+	public void deleteCustomer(Long customerID)throws IllegalArgumentException,NullPointerException{
 		if(customerID==null){
 			throw new NullPointerException("customerID is null in deleteCustomer");
 		}

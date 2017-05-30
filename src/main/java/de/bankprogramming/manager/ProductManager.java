@@ -24,7 +24,7 @@ public class ProductManager {
 		ph = ProductHelper.getInstance();
 	}
 	public void openAccount(Customer customer, final ProductType type, final Double balance, final Double limit,
-			final Double interestRate, Customer guardian) {
+			final Double interestRate, Customer guardian)throws IllegalArgumentException {
 		Account acc;
 		if (type == ProductType.CurrentAccount || type == ProductType.JuniorCurrentAccount
 				|| type == ProductType.CorporateAccount || type == ProductType.StudentAccount) {
@@ -71,7 +71,7 @@ public class ProductManager {
 		card.setLocked(false);
 	}
 	public void createCard(ProductType type, Customer owner, Double yearlyFee, String cardStyle, Integer limit, boolean international,
-						   boolean locked, Long accountID){
+						   boolean locked, Long accountID)throws IllegalArgumentException,NullPointerException{
 		//region check arguments
 		if(type == null){
 		throw new NullPointerException("type is null: createCard");
